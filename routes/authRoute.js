@@ -1,6 +1,6 @@
 const express = require("express");
 const passport = require("../middleware/passport");
-const { forwardAuthenticated } = require("../middleware/checkAuth");
+const { forwardAuthenticated, ensureAdmin } = require("../middleware/checkAuth");
 
 const router = express.Router();
 
@@ -11,7 +11,16 @@ router.post(
   passport.authenticate("local", {
     successRedirect: "/dashboard",
     failureRedirect: "/auth/login",
+    failureFlash: true,  
   })
+);
+
+router.get("/github", passport.authenticate("github"));
+
+router.get(
+  "/github/callback",
+  passport.authenticate("github", { failureRedirect: "/login" }),
+  (req, res) => res.redirect("/dashboard")
 );
 
 router.get("/logout", (req, res) => {

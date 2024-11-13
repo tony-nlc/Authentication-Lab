@@ -25,7 +25,6 @@ const passport = require("./middleware/passport");
 const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
 
-// Middleware for express
 app.use(express.json());
 app.use(expressLayouts);
 app.use(express.urlencoded({ extended: true }));
@@ -41,6 +40,7 @@ app.use((req, res, next) => {
 
   console.log(`Session details are: `);
   console.log(req.session.passport);
+  
   next();
 });
 

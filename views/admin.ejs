@@ -1,0 +1,15 @@
+<h1 class="mt-4">Dashboard</h1>
+<p class="lead mb-3">Welcome <%= user.name %></p>
+
+<h1>Current Active Sessions</h1>
+<div>
+<% activeSessions.forEach(session => { %>
+    <p>SessionID: <%= session.sessionID %></p>
+    <p>UserID: <%= session.userID %></p>
+    <form action="/admin/revoke-session/<%= session.sessionID %>" method="POST" id="revokeForm-<%= session.sessionID %>" style="display:inline;">
+        <a href="/auth/login" onclick="document.getElementById('revokeForm-<%= session.sessionID %>').submit(); return false;">Revoke</a>
+    </form>
+<% }) %>
+</div>
+
+<a href="/auth/logout" class="btn btn-secondary">Logout</a>

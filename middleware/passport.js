@@ -25,8 +25,8 @@ const localLogin = new LocalStrategy(
 passport.use(
     new GitHubStrategy(
         {
-            clientID: "Ov23ligFwUqvF8pp8aqu",
-            clientSecret: "2b8623c387cd5ae5839b942fdd7f0688cb38aa88",
+            clientID:,
+            clientSecret:,
             callbackURL: "http://localhost:8000/auth/github/callback",
         },
         function (accessToken, refreshToken, profile, done) {
